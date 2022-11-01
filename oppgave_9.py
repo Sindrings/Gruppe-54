@@ -2,6 +2,14 @@ from datetime import datetime
 lst_avtale = []
 lst_ny = []
 
+<<<<<<< HEAD
+=======
+#kølle
+#HALLO
+# test
+#endring1
+
+>>>>>>> a31096b0920b66b5585a47ef57e5bbc8995c445a
 def dato():
     t = input("avtaletid (dd/mm/yy hh:mm)" )
     #t = '04/06/22 12:24'
@@ -97,4 +105,3 @@ with open('avtale.csv', "r", encoding = "UTF8") as g:
 
         avtale2 = avtale(tittel = lst_ny[0], sted = lst_ny[1], starttid = lst_ny[2], varighet = lst_ny[3], kategori = lst_ny[4].strip())
         print(avtale2)
-
