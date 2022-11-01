@@ -4,6 +4,7 @@ lst_ny = []
 
 #kølle
 #HALLO
+# test
 #endring1
 
 def dato():
