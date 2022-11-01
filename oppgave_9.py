@@ -4,6 +4,7 @@ lst_ny = []
 
 #kølle
 #HALLO
+#endring1
 
 def dato():
     t = input("avtaletid (dd/mm/yy hh:mm)" )
