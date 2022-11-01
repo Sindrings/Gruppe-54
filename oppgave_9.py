@@ -2,6 +2,8 @@ from datetime import datetime
 lst_avtale = []
 lst_ny = []
 
+#kølle
+
 def dato():
     t = input("avtaletid (dd/mm/yy hh:mm)" )
     #t = '04/06/22 12:24'
