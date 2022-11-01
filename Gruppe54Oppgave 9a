@@ -11,13 +11,11 @@ def dato():
         
     except:
         print("Prøv på nytt!")
-        print("Prøv på nytt! ")
         dato()
     return(tid)
 
 def tidsrom():
     min = input("Hvor mange mittutter?" )
-    min = input("Hvor mange mittutter? " )
     try:
         min = int(min)
     except:
@@ -40,8 +38,6 @@ def opprettavtale():
 
     avtalen = input("Hva er avtalen?" )
     stedet = input("Hvilket sted?" )
-    avtalen = input("Hva er avtalen? " )
-    stedet = input("Hvilket sted? " )
     kategorien = input("Kategori: ")
     
     
