@@ -39,6 +39,7 @@ class avtale:
 test_e = avtale("TT", "UIS","17:00", 3600, "Fylla")
 print(test_e)
 
+#Oppgave f
 def opprettavtale():
 
     avtalen = input("Hva er avtalen? ")
@@ -52,6 +53,7 @@ def opprettavtale():
 
 a = opprettavtale()
 
+#Oppgave g
 b = avtale("Avtale1","Rom 1", "01/01/11 11:30", 121, "Møte")
 lst_avtale.append(b)
 b = avtale("Avtale2","Rom 2", "02/02/22 12:30", 122, "Mat")
@@ -73,6 +75,7 @@ def skriv_avt(lst):
         
 skriv_avt(lst_avtale)
 
+#oppgave h
 import csv
 with open('avtale.csv',"w", encoding = "UTF8", newline = "") as f:
     writer = csv.writer(f)
@@ -84,6 +87,7 @@ with open('avtale.csv',"w", encoding = "UTF8", newline = "") as f:
 tid = lst_avtale[0].kategori
 print(tid)
 
+#Oppgave i
 avtaleCSV = r'C:\Users\sindr\Documents\GitHub\avtale.csv'
 
 with open('avtale.csv', "r", encoding = "UTF8") as g:
