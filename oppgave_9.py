@@ -36,7 +36,7 @@ class avtale:
     def __str__(self):
         return f' \nAvtale: {self.tittel} \nsted: {self.sted} \nstarttid: {self.starttid} \nvarighet: {self.varighet}min \nkategori: {self.kategori}'
 
-test_e = avtale("TT", "UIS","17:00", 3600, "Fylla")
+test_e = avtale("Date", "Oslo","17:00", 3600, "Lykke til Kevin")
 print(test_e)
 
 #Oppgave f
