@@ -15,7 +15,7 @@ def dato():
     return(tid)
 
 def tidsrom():
-    min = input("Hvor mange mittutter? ")
+    min = input("Hvor mange minutter? ")
     try:
         min = int(min)
     except:
