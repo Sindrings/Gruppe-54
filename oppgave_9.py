@@ -37,6 +37,7 @@ class avtale:
         return f' \nAvtale: {self.tittel} \nsted: {self.sted} \nstarttid: {self.starttid} \nvarighet: {self.varighet}min \nkategori: {self.kategori}'
 
 test_e = avtale("TT", "UIS","17:00", 3600, "Fylla")
+print(test_e)
 
 def opprettavtale():
 
