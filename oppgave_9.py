@@ -2,14 +2,6 @@ from datetime import datetime
 lst_avtale = []
 lst_ny = []
 
-<<<<<<< HEAD
-=======
-#kølle
-#HALLO
-# test
-#endring1
-
->>>>>>> a31096b0920b66b5585a47ef57e5bbc8995c445a
 def dato():
     t = input("avtaletid (dd/mm/yy hh:mm)" )
     #t = '04/06/22 12:24'
@@ -45,6 +37,7 @@ class avtale:
         return f' \nAvtale: {self.tittel} \nsted: {self.sted} \nstarttid: {self.starttid} \nvarighet: {self.varighet}min \nkategori: {self.kategori}'
 
 test_e = avtale("TT", "UIS","17:00", 3600, "Fylla")
+print(test_e)
 
 def opprettavtale():
 
