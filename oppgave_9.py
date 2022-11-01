@@ -2,14 +2,6 @@ from datetime import datetime
 lst_avtale = []
 lst_ny = []
 
-<<<<<<< HEAD
-=======
-#kølle
-#HALLO
-# test
-#endring1
-
->>>>>>> a31096b0920b66b5585a47ef57e5bbc8995c445a
 def dato():
     t = input("avtaletid (dd/mm/yy hh:mm)" )
     #t = '04/06/22 12:24'
