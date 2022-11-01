@@ -2,10 +2,6 @@ from datetime import datetime
 lst_avtale = []
 lst_ny = []
 
-#kølle
-#HALLO
-#endring1
-
 def dato():
     t = input("avtaletid (dd/mm/yy hh:mm)" )
     #t = '04/06/22 12:24'
@@ -19,7 +15,7 @@ def dato():
     return(tid)
 
 def tidsrom():
-    min = input("Hvor mange mittutter?" )
+    min = input("Hvor mange mittutter? ")
     try:
         min = int(min)
     except:
@@ -27,6 +23,7 @@ def tidsrom():
         tidsrom()
     return(min)
 
+#Oppgave d
 class avtale:
     def __init__(self, tittel:str, sted:str, starttid, varighet:int, kategori:str):
         self.tittel = tittel
@@ -35,13 +32,16 @@ class avtale:
         self.varighet = varighet
         self.kategori = kategori
 
+#Oppgave e
     def __str__(self):
         return f' \nAvtale: {self.tittel} \nsted: {self.sted} \nstarttid: {self.starttid} \nvarighet: {self.varighet}min \nkategori: {self.kategori}'
 
+test_e = avtale("TT", "UIS","17:00", 3600, "Fylla")
+
 def opprettavtale():
 
-    avtalen = input("Hva er avtalen?" )
-    stedet = input("Hvilket sted?" )
+    avtalen = input("Hva er avtalen? ")
+    stedet = input("Hvilket sted? ")
     kategorien = input("Kategori: ")
     
     
@@ -59,6 +59,8 @@ b = avtale("Avtale3","Rom 3", "03/03/33 13:30", 123, "eple")
 lst_avtale.append(b)
 b = avtale("Avtale4","Rom 4", "04/04/44 14:30", 124, "Hjem")
 lst_avtale.append(b)
+
+print("\n")
 
 def skriv_avt(lst):
     overskrift = input("Overskrift: ")
