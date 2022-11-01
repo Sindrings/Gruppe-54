@@ -95,4 +95,3 @@ with open('avtale.csv', "r", encoding = "UTF8") as g:
 
         avtale2 = avtale(tittel = lst_ny[0], sted = lst_ny[1], starttid = lst_ny[2], varighet = lst_ny[3], kategori = lst_ny[4].strip())
         print(avtale2)
-
