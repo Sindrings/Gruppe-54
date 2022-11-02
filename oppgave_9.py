@@ -7,7 +7,7 @@ def dato():
     #t = '04/06/22 12:24'
     
     try:
-        tid = datetime.strptime(t, "%d/%m/%y %H:%M")
+        tid = datetime.strptime(t, "%d/%m/%y") #%H:%M"#)
         
     except:
         print("Prøv på nytt!")
@@ -37,7 +37,7 @@ class avtale:
         return f' \nAvtale: {self.tittel} \nsted: {self.sted} \nstarttid: {self.starttid} \nvarighet: {self.varighet}min \nkategori: {self.kategori}'
 
 test_e = avtale("Date", "Oslo","17:00", 3600, "Lykke til Kevin")
-print(test_e, "\n")
+#print(test_e, "\n")
 
 #Oppgave f
 def opprettavtale():
@@ -49,9 +49,9 @@ def opprettavtale():
     
     nyavtale = avtale(avtalen, stedet, dato(), tidsrom(), kategorien)
     #avtale_1 = avtale('Posten','Hinna', 1300, 180, 'brev')
-    print(nyavtale)
+    #print(nyavtale)
 
-a = opprettavtale()
+#a = opprettavtale()
 
 #Oppgave g
 b = avtale("Avtale1","Rom 1", "01/01/11 11:30", 121, "Møte")
@@ -68,12 +68,12 @@ print("\n")
 def skriv_avt(lst):
     overskrift = input("Overskrift: ")
     if len(overskrift) > 0:
-        print(overskrift, "\n")
+       # print(overskrift, "\n")
 
-    for i, avt in enumerate (lst):
-        print("Index: ", i, avt, '\n')
+        for i, avt in enumerate (lst):
+            print("Index: ", i, avt, '\n')
         
-skriv_avt(lst_avtale)
+#skriv_avt(lst_avtale)
 
 #oppgave h
 import csv
@@ -81,11 +81,11 @@ with open('avtale.csv',"w", encoding = "UTF8", newline = "") as f:
     writer = csv.writer(f)
     
     for minAvtale in lst_avtale:
-        print(minAvtale)
+        #print(minAvtale)
         writer.writerow([minAvtale.tittel, minAvtale.sted, minAvtale.starttid, minAvtale.varighet, minAvtale.kategori])
 
 tid = lst_avtale[0].kategori
-print(tid)
+#print(tid)
 
 #Oppgave i
 avtaleCSV = r'C:\Users\sindr\Documents\GitHub\avtale.csv'
@@ -102,3 +102,4 @@ with open('avtale.csv', "r", encoding = "UTF8") as g:
 
         avtale2 = avtale(tittel = lst_ny[0], sted = lst_ny[1], starttid = lst_ny[2], varighet = lst_ny[3], kategori = lst_ny[4].strip())
         print(avtale2)
+
