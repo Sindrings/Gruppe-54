@@ -1,21 +1,20 @@
 from datetime import datetime
-lst_avtale = []
+import sys
+lstAvtaler = []
 lst_ny = []
 
+
 def dato():
-    t = input("avtaletid (dd/mm/yy hh:mm)" )
-    #t = '04/06/22 12:24'
-    
+    d = input("Gi avtaletidspunkt (dd/mm/yy hh:mm):")
     try:
-        tid = datetime.strptime(t, "%d/%m/%y %H:%M")
-        
+        tidspunkt = datetime.strptime(d, "%d/%m/%y %H:%M")
     except:
-        print("Prøv på nytt!")
-        dato()
-    return(tid)
+        print('Feil i dato. Prøv på nytt.')
+        dato()                                #Dersom feil (except), hopp tilbake til start, inntil brukeren taster riktig
+    return(tidspunkt)
 
 def tidsrom():
-    min = input("Hvor mange mittutter? ")
+    min = input("Hvor mange minutter? ")
     try:
         min = int(min)
     except:
@@ -36,65 +35,227 @@ class avtale:
     def __str__(self):
         return f' \nAvtale: {self.tittel} \nsted: {self.sted} \nstarttid: {self.starttid} \nvarighet: {self.varighet}min \nkategori: {self.kategori}'
 
-test_e = avtale("TT", "UIS","17:00", 3600, "Fylla")
-print(test_e)
+test_e = avtale("Date", "Oslo","11/11/22 17:00", 3600, "Lykke til Kevin")
+print(test_e, "\n")
 
-def opprettavtale():
+#Oppgave f
+def OpprettAvtale():
 
     avtalen = input("Hva er avtalen? ")
     stedet = input("Hvilket sted? ")
     kategorien = input("Kategori: ")
     
     
-    nyavtale = avtale(avtalen, stedet, dato(), tidsrom(), kategorien)
+    avt = avtale(avtalen, stedet, dato(), tidsrom(), kategorien)
     #avtale_1 = avtale('Posten','Hinna', 1300, 180, 'brev')
-    print(nyavtale)
+    return(avt)
+    
 
-a = opprettavtale()
+#a = opprettavtale()
 
+#Oppgave g
 b = avtale("Avtale1","Rom 1", "01/01/11 11:30", 121, "Møte")
-lst_avtale.append(b)
+lstAvtaler.append(b)
 b = avtale("Avtale2","Rom 2", "02/02/22 12:30", 122, "Mat")
-lst_avtale.append(b)
+lstAvtaler.append(b)
 b = avtale("Avtale3","Rom 3", "03/03/33 13:30", 123, "eple")
-lst_avtale.append(b)
+lstAvtaler.append(b)
 b = avtale("Avtale4","Rom 4", "04/04/44 14:30", 124, "Hjem")
-lst_avtale.append(b)
+lstAvtaler.append(b)
 
 print("\n")
 
-def skriv_avt(lst):
-    overskrift = input("Overskrift: ")
+overskrift = input("Overskrift: ")
+
+def ListAlleAvtaler(lst):
+    
     if len(overskrift) > 0:
+        
         print(overskrift, "\n")
 
-    for i, avt in enumerate (lst):
+    for i, avt in enumerate (lst):     #avt er avtale som ligger i listen lst og i er index plassering i lst
         print("Index: ", i, avt, '\n')
         
-skriv_avt(lst_avtale)
+ListAlleAvtaler(lstAvtaler)
 
+#oppgave h
 import csv
-with open('avtale.csv',"w", encoding = "UTF8", newline = "") as f:
-    writer = csv.writer(f)
-    
-    for minAvtale in lst_avtale:
-        print(minAvtale)
-        writer.writerow([minAvtale.tittel, minAvtale.sted, minAvtale.starttid, minAvtale.varighet, minAvtale.kategori])
 
-tid = lst_avtale[0].kategori
-print(tid)
-
-avtaleCSV = r'C:\Users\sindr\Documents\GitHub\avtale.csv'
-
-with open('avtale.csv', "r", encoding = "UTF8") as g:
-    lines = g.readlines()
-    #print(lines)
-    for line in lines:
-        #print(line)
-
-        lst_ny = line.split(",")
-        #print(type(lst_ny), lst_ny)
+def SkrivAvtalerTilFil(lst):
+    with open('avtale.csv',"w", encoding = "UTF8", newline = "") as f:
+        writer = csv.writer(f)
         
+        for avt in lst:
+            #print(minAvtale)
+            writer.writerow([avt.tittel, avt.sted, avt.starttid, avt.varighet, avt.kategori])
+    
 
-        avtale2 = avtale(tittel = lst_ny[0], sted = lst_ny[1], starttid = lst_ny[2], varighet = lst_ny[3], kategori = lst_ny[4].strip())
-        print(avtale2)
+#Oppgave i
+avtaleCSV = r'C:\Users\sindr\Documents\GitHub\avtale.csv'
+lstAvtFraFil = []
+lstCSV = []
+def LesAvtalerFraFil():
+        
+           
+    with open('avtale.csv', "r", encoding = "UTF8") as g:
+        lstAvtFraFil = []
+        lstCSV = []
+        
+        lines = g.readlines()
+        #print(lines)
+        for line in lines:
+            #print(line)
+            lst_ny = line.split(",")
+            #print(type(lst_ny), lst_ny)
+            avtale2 = avtale(tittel = lst_ny[0], sted = lst_ny[1], starttid = lst_ny[2], varighet = lst_ny[3], kategori = lst_ny[4].strip())
+            lstAvtFraFil.append(avtale2)
+    
+    return(lstAvtFraFil)
+    #print(avtale2)
+
+
+
+def SøkAvtaleDato(lst):
+    
+    lstDatoAvt = []
+    dato = SetDato()
+    #print(type(dato), dato)
+
+    for avt in lst:
+        avt_dato = avt.starttid                             #str, stime = starttid
+        avt_dato = datetime.strptime(avt_dato, "%Y-%m-%d %H:%M:%S").date()
+        #print(avt_dato, ' - ', dato)
+
+        if avt_dato == dato:
+            lstDatoAvt.append(avt)
+
+    if len(lstDatoAvt)>0:
+        print("\nAvtaler for ", datetime.strftime(dato, "%d-%m-%Y"),'\n')
+    
+        for avt in lstDatoAvt:
+            print(avt, '\n')
+    else:
+        print("Ingen avtaler ", dato)
+
+#SøkAvtaleDato(lstAvtaler)
+
+def SetDato():
+    d = input("Gi en dato (dd/mm/yy):")
+    try:
+        dato = datetime.strptime(d, "%d/%m/%y")
+        dato = datetime.date(dato)
+    except:
+        print('Feil i dato. Prøv på nytt.')
+        SetDato()
+
+    return(dato)
+
+#Oppgave k
+def SearchInString(lst):
+    lstSøkIAvt = []
+
+    søkestreng = input("Avtaletittel skal inneholde dette:")
+    søkestreng = søkestreng.lower()   #.lower gjør om til små bokstaver (frivillig oppgave k)
+    for avt in lst:
+        strTittel = avt.tittel
+        strTittel = strTittel.lower()
+        
+        if strTittel.find(søkestreng) > -1 :
+            lstSøkIAvt.append(avt)
+
+    if len(lstSøkIAvt)>0:
+        print('\n',len(lstSøkIAvt),"avtaler som inneholder", søkestreng,':\n')
+    
+        for avt in lstSøkIAvt:
+            print(avt, '\n')
+    else:
+        print("Ingen avtaler som inneholder ", søkestreng)
+
+#SearchInString(lstAvtaler)
+
+def PrintMenyValg():
+    print('A - Les inn avtaler fra fil')
+    print('B - Skriv avtaler til fil')
+    print('C - Lag ny avtale')                          #OpprettAvtale
+    print('D - Skriv ut alle avtaler')                  #ListAlleAvtaler
+    print('E - Søk etter avtale med dato')              #SøkAvtaleDato
+    print('F - Søk etter avtale med tekst')             #SearchInString
+    print('H - Slett en avtale')                        #SlettAvtaleFraListe
+    print('I - Rediger en avtale')                      #SlettAvtaleFraListe
+    print('X - Avslutt (exit)')                         #Exit funksjon
+
+def ExitProgram():
+    print("Programmet avsluttes")
+    sys.exit()
+
+def SlettAvtaleFraListe(lst):
+    ListAlleAvtaler(lst)
+    idx = input("Velg index som skal slettes:")
+
+    if len(idx) == 0:
+        print("Ingen index ble valgt, avslutter.")
+    else:
+        try:
+            idx = int(idx)
+            lst.pop(idx)
+            ListAlleAvtaler(lst)
+        except:
+            print("Index må være et heltall som finnes  i listen. Velg funksjonen på nytt for å slette en avtale.")
+    return(lst)
+
+def redigerAvtale(lst):
+    ListAlleAvtaler(lst)
+    idx = input("Velg index som skal editeres:")
+
+    if len(idx) == 0:
+        print("Ingen index ble valgt, avslutter.")
+    else:
+        try:
+            idx = int(idx)
+            print(lst[idx])
+            lst[idx] = OpprettAvtale()
+            print("Redigert avtale: ", lst[idx])
+              
+        except:
+            print("Index må være et heltall som finnes  i listen. Velg funksjonen på nytt for å slette en avtale.")
+    return(lst)
+
+#Oppgave l
+if __name__ == "__main__":
+
+    while (True):
+
+        PrintMenyValg()
+        valg = input("Menyvalg (A-I, (X for å avslutte)", "\n")
+        valg = valg.upper()
+        print("Valgt verdi: ", valg)
+        
+        if valg == 'A':
+            lstAvtaler = LesAvtalerFraFil()
+            print("read ", len(lstAvtaler), " records from file")
+        elif valg == 'B':
+            SkrivAvtalerTilFil(lstAvtaler)
+            #clear_output()  #Fjerner output fra cellen
+        elif valg == 'C':
+            lstAvtaler.append(OpprettAvtale())
+            #clear_output()  #Fjerner output fra cellen
+        elif valg == 'D':
+            #clear_output()  #Fjerner output fra cellen
+            ListAlleAvtaler(lstAvtaler)
+        elif valg == 'E':
+            #clear_output()  #Fjerner output fra cellen
+            SøkAvtaleDato(lstAvtaler)
+        elif valg == 'F':
+            #clear_output()  #Fjerner output fra cellen
+            SearchInString(lstAvtaler)
+        elif valg == 'X':
+            #exit()
+            ExitProgram()
+        elif valg == 'H':
+            lstAvtaler = SlettAvtaleFraListe(lstAvtaler)
+            #clear_output()  #Fjerner output fra cellen
+        elif valg == 'I':
+            #clear_output()  #Fjerner output fra cellen
+            lstAvtaler = redigerAvtale(lstAvtaler)
+        else:
+            print('Velg et gyldig menyvalg:')
